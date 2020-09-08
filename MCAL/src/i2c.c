@@ -1,0 +1,58 @@
+/*
+ * i2c.c
+ *
+ * Created: 10/29/2019 6:16:55 AM
+ *  Author: Muhammad Ali Moutiry
+ */ 
+/*
+#include "i2c.h"
+
+void init_i2c(){
+	HW_WR_PORT(I2C_BITRATE_REG,0x02);
+	HW_WR_PORT(I2C_STATUS_REG,0x00);
+	HW_WR_PORT(I2C_ADDRESS_REG,0x02);
+	HW_WR_BIT(I2C_CONTROL_REG,2,HIGH);
+}
+
+void i2c_start(){
+	HW_WR_BIT(I2C_CONTROL_REG,5,HIGH);
+	HW_WR_BIT(I2C_CONTROL_REG,7,HIGH);
+	HW_WR_BIT(I2C_CONTROL_REG,2,HIGH);
+	while(!HW_READ_BIT(I2C_CONTROL_REG,7));	
+}
+
+void i2c_stop(){
+	HW_WR_BIT(I2C_CONTROL_REG,4,HIGH);
+	HW_WR_BIT(I2C_CONTROL_REG,7,HIGH);
+	HW_WR_BIT(I2C_CONTROL_REG,2,HIGH);
+}
+
+void i2c_write(uint8 data){
+	HW_WR_PORT(I2C_DATA_REG,data);
+	HW_WR_BIT(I2C_CONTROL_REG,7,HIGH);
+	HW_WR_BIT(I2C_CONTROL_REG,2,HIGH);
+	while(!HW_READ_BIT(I2C_CONTROL_REG,7));	
+}
+
+uint8 i2c_readACK(){
+	HW_WR_BIT(I2C_CONTROL_REG,7,HIGH);
+	HW_WR_BIT(I2C_CONTROL_REG,2,HIGH);
+	HW_WR_BIT(I2C_CONTROL_REG,6,HIGH);
+	while(!HW_READ_BIT(I2C_CONTROL_REG,7));
+	return HW_READ_REG(I2C_DATA_REG);
+}
+
+uint8 i2c_readNACK(){
+	HW_WR_BIT(I2C_CONTROL_REG,7,HIGH);
+	HW_WR_BIT(I2C_CONTROL_REG,2,HIGH);
+	HW_WR_BIT(I2C_CONTROL_REG,6,LOW);
+	while(!HW_READ_BIT(I2C_CONTROL_REG,7));
+	return HW_READ_REG(I2C_DATA_REG);
+}
+
+i2cStatus i2c_get_status(){
+	i2cStatus status;
+	status = (HW_READ_REG(I2C_STATUS_REG) & 0xF8);
+	return status;
+}
+*/
