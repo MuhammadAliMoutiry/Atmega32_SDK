@@ -143,27 +143,84 @@ void init_timer2(tTimerCfg_t *obj){
 
 
 void init_timer1(tTimerCfg_t *obj){
-	if(obj->wave_mode==NORMAL){
+	if(obj->wave_mode==TMR1_NORMAL_0xFFFF_TOP){
 		HW_WR_BIT(TMR_CTRL_REG_1A,0,LOW);
 		HW_WR_BIT(TMR_CTRL_REG_1A,1,LOW);
 		HW_WR_BIT(TMR_CTRL_REG_1B,3,LOW);
 		HW_WR_BIT(TMR_CTRL_REG_1B,4,LOW);
-		}else if(obj->wave_mode==COMPARE_MATCH){
+		}else if(obj->wave_mode== TMR1_PWM_PHASE_CORRECT_8BIT_0x00FF_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1B,3,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,LOW);
+		}else if(obj->wave_mode== TMR1_PWM_PHASE_CORRECT_9BIT_0x01FF_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,3,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,LOW);
+		}else if(obj->wave_mode== TMR1_PWM_PHASE_CORRECT_10BIT_0x03FF_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,3,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,LOW);
+		}else if(obj->wave_mode==TMR1_COMPARE_MATCH_OCR1A_TOP){
 		HW_WR_BIT(TMR_CTRL_REG_1A,0,LOW);
 		HW_WR_BIT(TMR_CTRL_REG_1A,1,LOW);
 		HW_WR_BIT(TMR_CTRL_REG_1B,3,HIGH);
 		HW_WR_BIT(TMR_CTRL_REG_1B,4,LOW);
-		}else if(obj->wave_mode == FAST_PWM){
+		}else if(obj->wave_mode== TMR1_FAST_PWM_8BIT_0x00FF_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1B,3,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,LOW);
+		}else if(obj->wave_mode== TMR1_FAST_PWM_9BIT_0x01FF_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,3,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,LOW);
+		}else if(obj->wave_mode== TMR1_FAST_PWM_10BIT_0x03FF_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,3,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,LOW);
+		}else if(obj->wave_mode== TMR1_PWM_PHASE_FREQ_CORRECT_ICR1_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1B,3,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,HIGH);
+		}else if(obj->wave_mode== TMR1_PWM_PHASE_FREQ_CORRECT_OCR1A_TOP){
 		HW_WR_BIT(TMR_CTRL_REG_1A,0,HIGH);
 		HW_WR_BIT(TMR_CTRL_REG_1A,1,LOW);
 		HW_WR_BIT(TMR_CTRL_REG_1B,3,LOW);
-		HW_WR_BIT(TMR_CTRL_REG_1B,4,LOW);
-		}else if(obj->wave_mode == PHASE_CORRECT_PWM){
-		HW_WR_BIT(TMR_CTRL_REG_1A,0,HIGH);
-		HW_WR_BIT(TMR_CTRL_REG_1A,1,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,HIGH);
+		}else if(obj->wave_mode== TMR1_PWM_PHASE_CORRECT_ICR1_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,HIGH);
 		HW_WR_BIT(TMR_CTRL_REG_1B,3,LOW);
-		HW_WR_BIT(TMR_CTRL_REG_1B,4,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,HIGH);
+		}else if(obj->wave_mode== TMR1_PWM_PHASE_CORRECT_OCR1A_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,3,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,HIGH);
+		}else if(obj->wave_mode== TMR1_COMPARE_MATCH_ICR1_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1B,3,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,HIGH);
+		}else if(obj->wave_mode== TMR1_FAST_PWM_ICR1_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,3,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,HIGH);
+		}else if(obj->wave_mode== TMR1_FAST_PWM_OCR1A_TOP){
+		HW_WR_BIT(TMR_CTRL_REG_1A,0,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1A,1,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,3,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1B,4,HIGH);
 	}
+	
+	
 	if(obj->clock_cource == NO_CLOCK_SOURCE){
 		HW_WR_BIT(TMR_CTRL_REG_1B , 0 , LOW);
 		HW_WR_BIT(TMR_CTRL_REG_1B , 1 , LOW);
@@ -365,66 +422,137 @@ void timer1_ICU_interrupt_disable(){
 	HW_WR_BIT(TMR_INTERR_MASK_REG,5,LOW);
 }
 
-void set_duty_cycle(tTimerSelect_t timer,uint8 duty){
+void set_duty_cycle_8bitTMR(tTimerSelect_t timer,uint8 duty ){
 	uint16 temp = 0;
 	temp = ((duty * 256)/100) - 1 ;
 	if(timer == TIMER0_8BIT){
 		HW_WR_PORT(TMR_OUTPUT_CMP_REG_0 ,temp);
 		}else if(timer == TIMER2_8BIT){
 		HW_WR_PORT(TMR_OUTPUT_CMP_REG_2 ,temp);
-		}else if (timer == TIMER1_16BIT_CHA){
-		HW_WR_PORT(TMR_OUTPUT_CMP_REG_1AL,temp);
-		}else if (timer == TIMER1_16BIT_CHB){
-		HW_WR_PORT(TMR_OUTPUT_CMP_REG_1BL,temp);
-	}
+		}
 	
 }
 
-uint8 timer0_get_count(void){
-	return HW_READ_REG(TMR_COUNT_REG_0);
+void TMR1_set_duty(tTimerSelect_t timer, tWaveMode_t wave_mode ,uint8 duty , uint16 top_val){
+	uint16 top = 0;
+	if(wave_mode==TMR1_NORMAL_0xFFFF_TOP){
+		top = 0xFFFF ;
+	}else if((wave_mode== TMR1_PWM_PHASE_CORRECT_8BIT_0x00FF_TOP) ||
+	(wave_mode == TMR1_FAST_PWM_8BIT_0x00FF_TOP)){
+		top = 0x00FF;
+	}else if((wave_mode== TMR1_PWM_PHASE_CORRECT_9BIT_0x01FF_TOP) ||
+	(wave_mode == TMR1_FAST_PWM_9BIT_0x01FF_TOP)){
+		top = 0x01FF;
+	}else if((wave_mode== TMR1_PWM_PHASE_CORRECT_10BIT_0x03FF_TOP) ||
+	(wave_mode == TMR1_FAST_PWM_10BIT_0x03FF_TOP)){
+		top = 0x03FF ;
+	}else if((wave_mode==TMR1_COMPARE_MATCH_OCR1A_TOP )||
+	(wave_mode ==TMR1_PWM_PHASE_FREQ_CORRECT_OCR1A_TOP)||
+	(wave_mode == TMR1_PWM_PHASE_CORRECT_OCR1A_TOP) ||
+	(wave_mode == TMR1_FAST_PWM_OCR1A_TOP)){
+		top = top_val ;
+		HW_WR_PORT(TMR_OUTPUT_CMP_REG_1AL, (uint8)top_val);
+		HW_WR_PORT(TMR_OUTPUT_CMP_REG_1AH, (uint8)(top_val >> 8));
+	}else if((wave_mode== TMR1_PWM_PHASE_FREQ_CORRECT_ICR1_TOP) ||
+	(wave_mode== TMR1_PWM_PHASE_CORRECT_ICR1_TOP)||
+	(wave_mode== TMR1_COMPARE_MATCH_ICR1_TOP) ||
+	(wave_mode== TMR1_FAST_PWM_ICR1_TOP)){
+		top = top_val ;
+		HW_WR_PORT(TMR_INPUT_CAPTURE_REG_1L, (uint8)top_val);
+		HW_WR_PORT(TMR_INPUT_CAPTURE_REG_1H, (uint8)(top_val >> 8));
+	}
+	 uint32 temp = ((uint32)(duty * top)/100 )-1  ;
+	 if (timer == TIMER1_16BIT_CHA){
+		 HW_WR_PORT(TMR_OUTPUT_CMP_REG_1AL,temp);
+		 }else if (timer == TIMER1_16BIT_CHB){
+		 HW_WR_PORT(TMR_OUTPUT_CMP_REG_1BL,temp);
+	 }
+	}
+
+void TMR1_stop_PWM(tTimerSelect_t timer1){
+	if (timer1 == TIMER1_16BIT_CHB){
+		HW_WR_BIT(TMR_CTRL_REG_1A ,4,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1A ,5,LOW);
+	}else if (timer1 == TIMER1_16BIT_CHA){
+	HW_WR_BIT(TMR_CTRL_REG_1A ,6,LOW);
+	HW_WR_BIT(TMR_CTRL_REG_1A ,7,LOW);
+	}
 }
-void timer0_set_count(uint8 value){
-	HW_WR_PORT(TMR_COUNT_REG_0,value);
+
+void TMR1_start_PWM(tCmpMatchOutputMode_t PWM_wave_mode){
+	 if (PWM_wave_mode ==TOGGLE_OCA1_ON_COMPARE_MATCH ){
+		HW_WR_BIT(TMR_CTRL_REG_1A,6,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1A,7,LOW);
+		init_pin(BASE_D,5,OUTPUT);
+		}else if (PWM_wave_mode == CLEAR_OCA1_ON_COMPARE_MATCH ){
+		HW_WR_BIT(TMR_CTRL_REG_1A,6,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1A,7,HIGH);
+		init_pin(BASE_D,5,OUTPUT);
+		}else if (PWM_wave_mode == SET_OCA1_ON_COMPARE_MATCH){
+		HW_WR_BIT(TMR_CTRL_REG_1A,6,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1A,7,HIGH);
+		init_pin(BASE_D,5,OUTPUT);
+		}else if (PWM_wave_mode == TOGGLE_OCB1_ON_COMPARE_MATCH){
+		HW_WR_BIT(TMR_CTRL_REG_1A,4,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1A,5,LOW);
+		init_pin(BASE_D,4,OUTPUT);
+		}else if (PWM_wave_mode == CLEAR_OCB1_ON_COMPARE_MATCH){
+		HW_WR_BIT(TMR_CTRL_REG_1A,4,LOW);
+		HW_WR_BIT(TMR_CTRL_REG_1A,5,HIGH);
+		init_pin(BASE_D,4,OUTPUT);
+		}else if (PWM_wave_mode == SET_OCB1_ON_COMPARE_MATCH ){
+		HW_WR_BIT(TMR_CTRL_REG_1A,4,HIGH);
+		HW_WR_BIT(TMR_CTRL_REG_1A,5,HIGH);
+		init_pin(BASE_D,4,OUTPUT);
+	}
 }
-uint8 timer2_get_count(void){
-	return HW_READ_REG(TMR_COUNT_REG_2);
-}
-void timer2_set_count(uint8 value){
-	HW_WR_PORT(TMR_COUNT_REG_2,value);
-}
+
+/**********************************************************************************************************/
+	uint8 timer0_get_count(void){
+		return HW_READ_REG(TMR_COUNT_REG_0);
+	}
+	void timer0_set_count(uint8 value){
+		HW_WR_PORT(TMR_COUNT_REG_0,value);
+	}
+	uint8 timer2_get_count(void){
+		return HW_READ_REG(TMR_COUNT_REG_2);
+	}
+	void timer2_set_count(uint8 value){
+		HW_WR_PORT(TMR_COUNT_REG_2,value);
+	}
 
 
 
 
-ISR(TIMER0_COMP_vect){
-	timer0_cmp_match_isr();
-}
+	ISR(TIMER0_COMP_vect){
+		timer0_cmp_match_isr();
+	}
 
-ISR(TIMER0_OVF_vect){
-	timer0_overflow_isr();
-}
+	ISR(TIMER0_OVF_vect){
+		timer0_overflow_isr();
+	}
 
-ISR(TIMER2_COMP_vect){
-	timer2_cmp_match_isr();
-}
+	ISR(TIMER2_COMP_vect){
+		timer2_cmp_match_isr();
+	}
 
-ISR(TIMER2_OVF_vect){
-	timer2_overflow_isr();
-}
+	ISR(TIMER2_OVF_vect){
+		timer2_overflow_isr();
+	}
 
-ISR(TIMER1_OVF_vect){
-	timer1_overflow_isr();
-}
+	ISR(TIMER1_OVF_vect){
+		timer1_overflow_isr();
+	}
 
-ISR(TIMER1_COMPA_vect){
-	timer1_cmpA_match_isr();
-}
+	ISR(TIMER1_COMPA_vect){
+		timer1_cmpA_match_isr();
+	}
 
-ISR(TIMER1_COMPB_vect){
-	timer1_cmpB_match_isr();
-}
+	ISR(TIMER1_COMPB_vect){
+		timer1_cmpB_match_isr();
+	}
 
-ISR(TIMER1_CAPT_vect){
-	timer1_ICU_isr();
-}
+	ISR(TIMER1_CAPT_vect){
+		timer1_ICU_isr();
+	}
 

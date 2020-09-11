@@ -20,7 +20,22 @@ typedef enum timersel{
 	}tTimerSelect_t;
 	
 typedef enum tWaveMode{
-	NORMAL=0 ,PHASE_CORRECT_PWM , COMPARE_MATCH , FAST_PWM
+	NORMAL=0 ,PHASE_CORRECT_PWM , COMPARE_MATCH , FAST_PWM,
+	TMR1_NORMAL_0xFFFF_TOP,
+	TMR1_PWM_PHASE_CORRECT_8BIT_0x00FF_TOP,
+	TMR1_PWM_PHASE_CORRECT_9BIT_0x01FF_TOP,
+	TMR1_PWM_PHASE_CORRECT_10BIT_0x03FF_TOP,
+	TMR1_COMPARE_MATCH_OCR1A_TOP,
+	TMR1_FAST_PWM_8BIT_0x00FF_TOP,
+	TMR1_FAST_PWM_9BIT_0x01FF_TOP,
+	TMR1_FAST_PWM_10BIT_0x03FF_TOP,
+	TMR1_PWM_PHASE_FREQ_CORRECT_ICR1_TOP,
+	TMR1_PWM_PHASE_FREQ_CORRECT_OCR1A_TOP,
+	TMR1_PWM_PHASE_CORRECT_ICR1_TOP,
+	TMR1_PWM_PHASE_CORRECT_OCR1A_TOP,
+	TMR1_COMPARE_MATCH_ICR1_TOP,
+	TMR1_FAST_PWM_ICR1_TOP,
+	TMR1_FAST_PWM_OCR1A_TOP
 	}tWaveMode_t;
 
 typedef enum tCmpMatchOutputMode{
@@ -106,6 +121,8 @@ void timer1_ICU_interrupt_enable();
 void timer1_ICU_interrupt_disable();
 void timer1_ICU_ISR(void (*ICU_isr)(void));
 
-void set_duty_cycle(tTimerSelect_t timer,uint8 duty);
-
+void set_duty_cycle_8bitTMR(tTimerSelect_t timer,uint8 duty);
+void TMR1_set_duty(tTimerSelect_t timer, tWaveMode_t wave_mode ,uint8 duty , uint16 top_val);
+void TMR1_stop_PWM(tTimerSelect_t timer1);
+void TMR1_start_PWM(tCmpMatchOutputMode_t PWM_wave_mode);
 #endif /* TIMER_H_ */
